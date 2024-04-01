@@ -1,4 +1,4 @@
-obj-m	:= src/facer.o
+obj-m	:= src/acer-wmi.o
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 PWD       := $(shell pwd)
@@ -14,7 +14,7 @@ default:
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 
 	if [ -f "$(KEY)" ] && [ -f "$(X509)" ]; then \
-		sudo kmodsign sha512 $(KEY) $(X509) src/facer.ko; \
+		sudo kmodsign sha512 $(KEY) $(X509) src/acer-wmi.ko; \
 	fi
 
 install:
@@ -25,15 +25,15 @@ clean:
 		.tmp_versions modules.order Module.symvers
 
 dkmsclean:
-	@dkms remove facer/0.1 --all || true
-	@dkms remove facer/0.2 --all || true
+	@dkms remove acer-wmi/0.1 --all || true
+	@dkms remove acer-wmi/0.2 --all || true
 
 dkms: dkmsclean
 	dkms add .
-	dkms install -m facer -v 0.2
+	dkms install -m acer-wmi -v 0.2
 
 onboot:
-	echo "facer" > /etc/modules-load.d/facer.conf
+	echo "facer" > /etc/modules-load.d/acer-wmi.conf
 
 noboot:
-	rm -f /etc/modules-load.d/facer.conf
+	rm -f /etc/modules-load.d/acer-wmi.conf

@@ -1,5 +1,5 @@
 #!/bin/bash
-rmmod facer
+rmmod acer-wmi
 make
-insmod src/facer.ko
+insmod src/acer-wmi.ko
 dmesg | tail -n 30

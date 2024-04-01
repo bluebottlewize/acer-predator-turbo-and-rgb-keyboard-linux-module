@@ -25,6 +25,6 @@ modprobe sparse-keymap
 modprobe video
 
 # install facer module
-insmod src/facer.ko
+insmod src/acer-wmi.ko
 dmesg | tail -n 10
 echo "[*] Done"

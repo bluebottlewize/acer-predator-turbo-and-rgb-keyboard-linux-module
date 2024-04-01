@@ -55,17 +55,17 @@ depend() {
 
 start() {
 	local EXE NAME PIDFILE AUTOCLEAN_CGROUP
- 	/sbin/rmmod acer_wmi
+ 	/sbin/rmmod acer-wmi
 	/sbin/modprobe wmi
 	/sbin/modprobe sparse-keymap
 	/sbin/modprobe video
-	/sbin/insmod $target_dir/src/facer.ko
-	# You can also just make it launch $target_dir/install.sh by uncommenting the line below and removing everything starting from /sbin/rmmod acer_wmi to /sbin/insmod
-	# /bin/bash $target_dir/src/facer.ko
+	/sbin/insmod $target_dir/src/acer-wmi.ko
+	# You can also just make it launch $target_dir/install.sh by uncommenting the line below and removing everything starting from /sbin/rmmod acer-wmi to /sbin/insmod
+	# /bin/bash $target_dir/src/acer-wmi.ko
 }
 
 stop() {
-	/sbin/rmmod facer
+	/sbin/rmmod acer-wmi
 }
 
 # vim: set ts=4 :
